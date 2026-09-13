@@ -5,28 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="style.css" />
-    <title>Guess My Number!</title>
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>"
+    />
+    <title>Guess My Number! | Retro Arcade Edition</title>
   </head>
   <body>
+    <!-- CELEBRATION CONFETTI CANVAS -->
+    <canvas id="confettiCanvas"></canvas>
+
     <header>
+      <div class="top-controls">
+        <button class="btn again">Again!</button>
+        <div class="header-tools">
+          <div class="difficulty-picker">
+            <label for="difficulty">Level:</label>
+            <select id="difficulty" class="select-difficulty">
+              <option value="easy">Easy (1–10)</option>
+              <option value="normal" selected>Normal (1–20)</option>
+              <option value="hard">Hard (1–50)</option>
+              <option value="extreme">Extreme (1–100)</option>
+            </select>
+          </div>
+          <button class="btn btn--sound" id="btnSound" title="Toggle Sound">
+            🔊 Sound
+          </button>
+        </div>
+      </div>
+
       <h1>Guess My Number!</h1>
-      <p class="between">(Between 1 and 20)</p>
-      <button class="btn again">Again!</button>
+      <p class="between">(Between <span class="range-min">1</span> and <span class="range-max">20</span>)</p>
       <div class="number">?</div>
     </header>
+
     <main>
       <section class="left">
-        <input type="number" class="guess" />
+        <input type="number" class="guess" placeholder="?" />
         <button class="btn check">Check!</button>
+        <p class="input-hint">Tip: Press <strong>Enter</strong> to check, <strong>Esc</strong> to reset</p>
+
+        <!-- PREVIOUS GUESSES HISTORY -->
+        <div class="history-container">
+          <p class="history-title">Your Guesses:</p>
+          <div class="history-chips" id="historyChips">
+            <span class="history-empty">None yet</span>
+          </div>
+        </div>
       </section>
+
       <section class="right">
-        <p class="message">Start guessing...</p>
+        <div class="status-box">
+          <p class="message">Start guessing...</p>
+          <p class="proximity-hint" id="proximityHint"></p>
+        </div>
+
         <p class="label-score">💯 Score: <span class="score">20</span></p>
         <p class="label-highscore">
           🥇 Highscore: <span class="highscore">0</span>
         </p>
+
+        <button class="btn btn--reset-hs" id="btnResetHighscore">
+          Reset Highscore
+        </button>
       </section>
     </main>
+
+    <footer>
+      <p>Built with Vanilla JavaScript &bull; Enhanced Edition</p>
+    </footer>
+
     <script src="script.js"></script>
   </body>
 </html>
